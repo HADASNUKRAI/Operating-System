@@ -1,0 +1,74 @@
+hadasnuk2_, harelkleiner
+HADAS NUKRAI (207310855), HAREL KLEINER (209543941)
+EX: 2
+
+FILES:
+myfile.c -- a file with some code
+myfile.h -- a file with some headers
+
+REMARKS:
+
+
+ANSWERS:
+
+Q1:
+   a. sigsetjmp - this method saves the environment and the current situation by various
+                  components such as the stack context, program counter and signal mask. It is useful dealing with
+                  interrupts by saving the current state and reload it by siglongjmp.
+                  env - This is the buffer where the current environment will be saved.
+                  savemask - This indicates that the signal mask should be saved in
+                             addition to the other context information.
+      siglonjmp - this method used to restore the environment saved by sigsetjmp, it allows the program
+                  to return to the previous state, saved by the sigsetjmp.
+                  sigjmp_buf __env - This is the buffer containing the saved environment for the current thread.
+                  int __val - This value indicates what sigsetjmp should return when siglongjmp
+                              restores the environment.
+
+   b. sigsetjmp - it saves the current environment, including the signals mask, and the signal mask determines
+                  which signals are blocked.
+      siglonjmp - it restore the environment with the signal mask so that the signal mask is set to the state it was
+                  before.
+
+Q2:
+   One general use of user-level thread - open the browser like google chrome. User level threads managed by a
+   user level library and the kernel in unaware of them. only one thread run at a time and it is low overhead.
+   It is better to use user-level threads for this example because it is a single process that doesnt consume a lot,
+   kernel-level is needed when multi-threads needs to run in parallel and in high overhead.
+
+Q3:
+    The advantages of creating a new process is that a process is isolated and each process have independent execution.
+    That way you have a better failure control which is important for tabs.
+    on the other hand the disadvantages are that processes are less efficient.
+
+Q4:
+    Let's describe the process when it comes to system calls and interrupting:
+
+    Keyboard Input - When you type in the terminal, each key press generates a hardware interrupt.
+    The CPU detects this interrupt and uses the interrupt vector to find the appropriate instructions to
+    handle the request. It then saves the current state and transfers control to the operating system,
+    which processes the keyboard input and translates it into characters.
+
+    Shell "Kill" Execution - The shell processes the input command "kill pid" and makes a system call to the operating
+    system.
+
+    OS Handling - When receiving the system call, the OS sends a signal to the specified process.
+    The default signal sent by the kill command is SIGTERM.
+
+    Application Response - The application receives the signal (SIGTERM).
+    If it receives this default signal, the application will clean up and perform any necessary operations
+    before shutting down. If it receives a different signal, it will handle it according to the specific
+    instructions defined for that signal.
+
+Q5:
+    Real time - The time in the "real world" as we can see on a clock or a stopwatch,
+    example - Measuring the total time taken to download a file from the internet.
+
+    Virtual time - The time that a process consumed from the CPU, this is the period of time,
+    during which the process is actually executing on the CPU, excluding the time when the process
+    is waiting or blocked.
+    example - Measuring the CPU time used by a process while preforming
+    the actual data processing computations on a database
+
+
+
+
